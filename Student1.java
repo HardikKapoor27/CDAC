@@ -1,0 +1,5 @@
+package coreJava;
+
+class Vidhyarti{
+	
+}
