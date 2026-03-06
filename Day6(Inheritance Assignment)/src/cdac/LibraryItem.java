@@ -1,6 +1,10 @@
 package cdac;
 
+import java.util.Scanner;
+
 public class LibraryItem {
+	
+	Scanner  sc = new Scanner(System.in);
 	
 	int itemId;
 	String title;
@@ -9,7 +13,31 @@ public class LibraryItem {
 	double price;
 	double fine;
 	int issueNum;
+	Date d;
 	
+	public  void TakeInput() {
+			
+		System.out.print("\nEnter Item ID: ");
+		itemId = sc.nextInt();
+		
+		sc.nextLine();
+		System.out.print("Enter Title: ");
+		title = sc.nextLine();
+		
+		System.out.print("Enter No. of page: ");
+		numberPage = sc.nextInt();
+		
+		sc.nextLine();
+		System.out.print("Enter Genre: ");
+		genre = sc.nextLine();
+		
+		System.out.print("Enter the Price: ");
+		price = sc.nextDouble();
+		
+		System.out.print("Enter the Issue Number: ");
+		issueNum = sc.nextInt();
+		
+	}
 	
 	public LibraryItem(int itemId, String title, int numberPage, String genre, double price,
 			int issueNum , Date d) {
@@ -22,10 +50,9 @@ public class LibraryItem {
 		this.issueNum = issueNum;
 	}
 
-
 	public void DisplayLibItem() {
 		
-		System.out.println("Item ID: " + itemId );
+		System.out.println("\nItem ID: " + itemId );
 		System.out.println("Title: " + title );
 		System.out.println("Issue Number: "  + issueNum);
 		System.out.println("Number of pages: " + numberPage );
@@ -42,25 +69,35 @@ public class LibraryItem {
 	
 }
 
-
 class Book extends LibraryItem {
 	
 	String Author;
 	
 	public Book(int itemId, String title, int numberPage, String genre, double price, int issueNum, Date d,
 			String author) {
+		
 		super(itemId, title, numberPage, genre, price, issueNum, d);
+		
 		this.Author = author;
 		
+		this.TakeInput();
+		this.takeAutorInput();
 		this.fineCal();
 		this.DisplayLibItem();
 		this.displayAuthor();
 		
 	}
 
+	public void takeAutorInput() {
+		
+		sc.nextLine();
+		System.out.print("Enter Author name: ");
+		Author = sc.nextLine();
+	}
+	
 	public void displayAuthor() {
 		
-		System.out.println("Author of the Book: " + Author);
+		System.out.print("Author of the Book: " + Author);
 	}
 	
 }
@@ -72,6 +109,7 @@ class Book extends LibraryItem {
 			Date d) {
 		super(itemId, title, numberPage, genre, price, issueNum, d);
 		
+		this.TakeInput();
 		this.fineCal();
 		this.DisplayLibItem();
 	}
