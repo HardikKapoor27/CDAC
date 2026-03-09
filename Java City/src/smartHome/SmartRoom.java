@@ -1,6 +1,6 @@
 package smartHome;
 
-public class SmartRoom extends LightBulb {
+public class SmartRoom {
 
 	private LightBulb roomLight;
     private Speaker speaker;
@@ -26,3 +26,4 @@ public class SmartRoom extends LightBulb {
     }
 	
 }
+
