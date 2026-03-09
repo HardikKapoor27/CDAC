@@ -1,0 +1,53 @@
+1. Employee Salary Calculation System
+Problem Statement
+A company wants to calculate salaries for different types of employees.
+1.	Create an abstract class Employee containing:
+o	empId
+o	name
+o	Abstract method calculateSalary()
+o	Concrete method displayEmployee() to show employee details.
+2.	Create two subclasses:
+o	FullTimeEmployee
+o	ContractEmployee
+3.	Salary rules:
+o	FullTimeEmployee → salary = basic + HRA + allowance
+o	ContractEmployee → salary = hoursWorked × ratePerHour
+4.	Demonstrate the functionality in the main class.
+2. Online Shopping Discount System
+Problem Statement
+Design a Discount System for an E-commerce platform.
+1.	Create an interface Discount with method:
+o	calculateDiscount(double price)
+2.	Implement this interface in:
+o	FestivalDiscount
+o	SeasonalDiscount
+3.	Each class should calculate discount differently.
+Example:
+•	Festival → 20%
+•	Seasonal → 10%
+4.	Display the final price after discount.
+Vehicle Rental System (Interface Based Design)
+Problem Statement
+A vehicle rental company wants to build a system to manage rentals for different types of vehicles such as cars and bikes. The rental charge calculation differs depending on the vehicle type.
+1.	Create an interface Rental with the following methods:
+o	rentVehicle(int days)
+o	calculateRent(int days)
+o	displayDetails()
+2.	Implement this interface in two classes:
+o	Car
+o	Bike
+3.	Each class should contain the following attributes:
+o	vehicleId
+o	vehicleName
+o	rentPerDay
+4.	Rental calculation rules:
+o	Car
+	Rent = days × rentPerDay
+	If days > 5, give 10% discount on total rent.
+o	Bike
+	Rent = days × rentPerDay
+	If days > 3, give 5% discount on total rent.
+5.	In the main class:
+o	Create objects for Car and Bike.
+o	Call rentVehicle() for different number of days.
+o	Display vehicle details and the final rent amount.
