@@ -1,0 +1,110 @@
+	Core Java-Day5 Session 1  & 2
+
+Part I
+Part II
+classes and objects
+constructor
+static and non static
+
+array of objects
+
+Inheritance
+
+
+
+
+Class Employee
+{
+
+constructor
+
+read
+
+disp
+
+logic
+
+
+
+}
+
+int[] num = new int[4]
+Employee[] e = new Employee[4];
+----------------------------------------------------------------
+Inheritance
+
+Inheritance is an object oriented concept where
+one class acquires the properties and the behaviour(data and method) of another
+class
+
+
+main()
+{
+
+Scanner s = new Scanner(System.in)
+no = s.nextInt()
+
+}
+
+
+creating sub class object and accessing the 
+sub class features(properties and behaviour) as well as
+super class features
+
+
+super class
+  - providing properties and method
+
+sub class
+  - receiving the properties and method
+
+
+class A
+{
+   void dispA()
+   {  }
+
+}
+
+class B extends A
+{
+
+  void dispB()
+
+}
+class TestInheritance
+{
+main()
+{   B b  = new B()
+     b.dispA()
+     b.dispB()
+
+    scanner s = new Scanner()
+   s.nextInt
+
+}
+
+
+type of inheritance
+
+
+simple inheritance
+class A{ }
+class b extends A { }
+
+
+multi level
+class A{ }
+class b extends A { }
+class c extends b { }
+
+
+hierarchical
+
+class A{ }
+class b extends A { }
+class c extends A { }
+
+
+
+
