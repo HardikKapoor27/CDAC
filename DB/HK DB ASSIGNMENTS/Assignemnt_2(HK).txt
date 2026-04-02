@@ -1,0 +1,173 @@
+                         Assignment - 2
+
+1)Find all employees whose last names start with 'A' and who 
+work in department No 10 or 30.
+
+mysql> select empno,ename,job,deptno from emp where ename like 'A%' and deptno in(10,30);
++-------+-------+----------+--------+
+| empno | ename | job      | deptno |
++-------+-------+----------+--------+
+|  7499 | ALLEN | SALESMAN |     30 |
++-------+-------+----------+--------+
+1 row in set (0.00 sec)
+
+2)Write a SQL query to display the department name, salary grade, and the total number of employees belonging to each grade within each department.
+
+mysql> SELECT dname, grade,sal, COUNT(*) AS Total_Employees
+    -> FROM emp
+    -> NATURAL JOIN dept
+    -> JOIN salgrade ON sal BETWEEN losal AND hisal
+    -> GROUP BY dname, grade, sal;
++------------+-------+---------+-----------------+
+| dname      | grade | sal     | Total_Employees |
++------------+-------+---------+-----------------+
+| RESEARCH   |     1 |  800.00 |               1 |
+| SALES      |     3 | 1600.00 |               1 |
+| SALES      |     2 | 1250.00 |               2 |
+| RESEARCH   |     4 | 2975.00 |               1 |
+| SALES      |     4 | 2850.00 |               1 |
+| ACCOUNTING |     4 | 2450.00 |               1 |
+| RESEARCH   |     4 | 3000.00 |               2 |
+| ACCOUNTING |     5 | 5000.00 |               1 |
+| SALES      |     3 | 1500.00 |               1 |
+| RESEARCH   |     1 | 1100.00 |               1 |
+| SALES      |     1 |  950.00 |               1 |
+| ACCOUNTING |     2 | 1300.00 |               1 |
++------------+-------+---------+-----------------+
+12 rows in set (0.00 sec)
+
+3)Retrieve the names of all employees, their department names, and their specific salary grade, but only for those employees who fall into Grade 4 or Grade 5.
+
+mysql> SELECT ename, dname, grade
+    -> FROM emp
+    -> NATURAL JOIN dept
+    -> JOIN salgrade ON sal BETWEEN losal AND hisal
+    -> WHERE grade IN (4,5);
++-------+------------+-------+
+| ename | dname      | grade |
++-------+------------+-------+
+| JONES | RESEARCH   |     4 |
+| BLAKE | SALES      |     4 |
+| CLARK | ACCOUNTING |     4 |
+| SCOTT | RESEARCH   |     4 |
+| KING  | ACCOUNTING |     5 |
+| FORD  | RESEARCH   |     4 |
++-------+------------+-------+
+6 rows in set (0.00 sec)
+
+4)List the names of all employees (ENAME) along with their Department Names (DNAME), but only for those working in 'NEW YORK' or 'CHICAGO'.
+
+mysql> select ename,dname,loc from emp natural join dept where loc in ('New York', 'Chicago');
++--------+------------+----------+
+| ename  | dname      | loc      |
++--------+------------+----------+
+| CLARK  | ACCOUNTING | NEW YORK |
+| KING   | ACCOUNTING | NEW YORK |
+| MILLER | ACCOUNTING | NEW YORK |
+| ALLEN  | SALES      | CHICAGO  |
+| WARD   | SALES      | CHICAGO  |
+| MARTIN | SALES      | CHICAGO  |
+| BLAKE  | SALES      | CHICAGO  |
+| TURNER | SALES      | CHICAGO  |
+| JAMES  | SALES      | CHICAGO  |
++--------+------------+----------+
+9 rows in set (0.00 sec)
+
+5)List the names of all employees who do not have a manager (their MGR column is NULL).
+
+mysql> select ename,mgr from emp where mgr is Null;
++-------+------+
+| ename | mgr  |
++-------+------+
+| KING  | NULL |
++-------+------+
+1 row in set (0.00 sec)
+
+6)Find employees whose salary is greater than 2000 and show their department names.
+
+mysql> select empno,ename,job,sal,deptno,dname from emp natural join dept where sal > 2000;
++-------+-------+-----------+---------+--------+------------+
+| empno | ename | job       | sal     | deptno | dname      |
++-------+-------+-----------+---------+--------+------------+
+|  7566 | JONES | MANAGER   | 2975.00 |     20 | RESEARCH   |
+|  7698 | BLAKE | MANAGER   | 2850.00 |     30 | SALES      |
+|  7782 | CLARK | MANAGER   | 2450.00 |     10 | ACCOUNTING |
+|  7788 | SCOTT | ANALYST   | 3000.00 |     20 | RESEARCH   |
+|  7839 | KING  | PRESIDENT | 5000.00 |     10 | ACCOUNTING |
+|  7902 | FORD  | ANALYST   | 3000.00 |     20 | RESEARCH   |
++-------+-------+-----------+---------+--------+------------+
+6 rows in set (0.00 sec)
+
+7)Display employees working in "ACCOUNTING" with their salary grade.
+
+mysql> select Empno, Ename, Job, Sal, Grade, Deptno, Dname from emp Natural Join dept Join salgrade on sal between Losal and Hisal where Dname = 'Accounting';
++-------+--------+-----------+---------+-------+--------+------------+
+| Empno | Ename  | Job       | Sal     | Grade | Deptno | Dname      |
++-------+--------+-----------+---------+-------+--------+------------+
+|  7934 | MILLER | CLERK     | 1300.00 |     2 |     10 | ACCOUNTING |
+|  7782 | CLARK  | MANAGER   | 2450.00 |     4 |     10 | ACCOUNTING |
+|  7839 | KING   | PRESIDENT | 5000.00 |     5 |     10 | ACCOUNTING |
++-------+--------+-----------+---------+-------+--------+------------+
+3 rows in set (0.00 sec)
+
+8)List employee name and department name in ascending order of employee name.
+
+mysql> select empno,ename,job,deptno,dname from emp natural join dept Order By ename;
++-------+--------+-----------+--------+------------+
+| empno | ename  | job       | deptno | dname      |
++-------+--------+-----------+--------+------------+
+|  7876 | ADAMS  | CLERK     |     20 | RESEARCH   |
+|  7499 | ALLEN  | SALESMAN  |     30 | SALES      |
+|  7698 | BLAKE  | MANAGER   |     30 | SALES      |
+|  7782 | CLARK  | MANAGER   |     10 | ACCOUNTING |
+|  7902 | FORD   | ANALYST   |     20 | RESEARCH   |
+|  7900 | JAMES  | CLERK     |     30 | SALES      |
+|  7566 | JONES  | MANAGER   |     20 | RESEARCH   |
+|  7839 | KING   | PRESIDENT |     10 | ACCOUNTING |
+|  7654 | MARTIN | SALESMAN  |     30 | SALES      |
+|  7934 | MILLER | CLERK     |     10 | ACCOUNTING |
+|  7788 | SCOTT  | ANALYST   |     20 | RESEARCH   |
+|  7369 | SMITH  | CLERK     |     20 | RESEARCH   |
+|  7844 | TURNER | SALESMAN  |     30 | SALES      |
+|  7521 | WARD   | SALESMAN  |     30 | SALES      |
++-------+--------+-----------+--------+------------+
+14 rows in set (0.00 sec)
+
+9)List employees working in department number 10 with their dnames and salaries and grades.
+
+mysql> SELECT ename, dname, sal, grade, emp.deptno
+    -> FROM emp
+    -> JOIN dept ON emp.deptno = dept.deptno
+    -> JOIN salgrade ON sal BETWEEN losal AND hisal
+    -> WHERE emp.deptno = 10;
++--------+------------+---------+-------+--------+
+| ename  | dname      | sal     | grade | deptno |
++--------+------------+---------+-------+--------+
+| MILLER | ACCOUNTING | 1300.00 |     2 |     10 |
+| CLARK  | ACCOUNTING | 2450.00 |     4 |     10 |
+| KING   | ACCOUNTING | 5000.00 |     5 |     10 |
++--------+------------+---------+-------+--------+
+3 rows in set (0.00 sec)
+
+10)Show employee name, department name, and salary sorted by salary in descending order.
+
+mysql> select ename,dname,sal from emp natural join dept order by sal desc;
++--------+------------+---------+
+| ename  | dname      | sal     |
++--------+------------+---------+
+| KING   | ACCOUNTING | 5000.00 |
+| SCOTT  | RESEARCH   | 3000.00 |
+| FORD   | RESEARCH   | 3000.00 |
+| JONES  | RESEARCH   | 2975.00 |
+| BLAKE  | SALES      | 2850.00 |
+| CLARK  | ACCOUNTING | 2450.00 |
+| ALLEN  | SALES      | 1600.00 |
+| TURNER | SALES      | 1500.00 |
+| MILLER | ACCOUNTING | 1300.00 |
+| WARD   | SALES      | 1250.00 |
+| MARTIN | SALES      | 1250.00 |
+| ADAMS  | RESEARCH   | 1100.00 |
+| JAMES  | SALES      |  950.00 |
+| SMITH  | RESEARCH   |  800.00 |
++--------+------------+---------+
+14 rows in set (0.00 sec)

@@ -1,0 +1,147 @@
+                                             Assignment - 3
+
+1. How can you find only the departments that currently have no employees assigned to them?
+
+mysql> select deptno,dname,loc from dept d
+    -> where not exists(select deptno from emp where deptno = d.deptno) order by deptno;
++--------+------------+--------+
+| deptno | dname      | loc    |
++--------+------------+--------+
+|     40 | OPERATIONS | BOSTON |
++--------+------------+--------+
+1 row in set (0.00 sec)
+
+2.List Employees Who Are Both Managers and Analysts (Using INTERSECT)
+
+mysql> SELECT e1.empno, e1.ename
+    -> FROM emp e1
+    -> JOIN emp e2
+    ->   ON e1.empno = e2.empno
+    -> WHERE e1.job = 'MANAGER'
+    ->   AND e2.job = 'ANALYST';
+
+Empty set (0.00 sec)
+
+3.Employees Who Work in Same Department as ‘SCOTT’ and ‘KING’(Using INTERSECT)
+
+mysql> SELECT e.empno, e.ename, e.job, e.deptno, d.dname
+    -> FROM emp e
+    -> JOIN dept d ON e.deptno = d.deptno
+    -> WHERE e.deptno IN (
+    ->     SELECT deptno
+    ->     FROM emp
+    ->     WHERE ename IN ('SCOTT', 'KING')
+    -> );
++-------+--------+-----------+--------+------------+
+| empno | ename  | job       | deptno | dname      |
++-------+--------+-----------+--------+------------+
+|  7369 | SMITH  | CLERK     |     20 | RESEARCH   |
+|  7566 | JONES  | MANAGER   |     20 | RESEARCH   |
+|  7788 | SCOTT  | ANALYST   |     20 | RESEARCH   |
+|  7876 | ADAMS  | CLERK     |     20 | RESEARCH   |
+|  7902 | FORD   | ANALYST   |     20 | RESEARCH   |
+|  7782 | CLARK  | MANAGER   |     10 | ACCOUNTING |
+|  7839 | KING   | PRESIDENT |     10 | ACCOUNTING |
+|  7934 | MILLER | CLERK     |     10 | ACCOUNTING |
++-------+--------+-----------+--------+------------+
+8 rows in set (0.00 sec)
+
+4.List Employees in Dept 10 or Having Salary > 3000 (Using UNION)
+
+mysql> SELECT empno, ename, job, deptno, sal
+    -> FROM emp
+    -> WHERE deptno = 10
+    ->
+    -> UNION
+    ->
+    -> SELECT empno, ename, job, deptno, sal
+    -> FROM emp
+    -> WHERE sal > 3000;
++-------+--------+-----------+--------+---------+
+| empno | ename  | job       | deptno | sal     |
++-------+--------+-----------+--------+---------+
+|  7782 | CLARK  | MANAGER   |     10 | 2450.00 |
+|  7839 | KING   | PRESIDENT |     10 | 5000.00 |
+|  7934 | MILLER | CLERK     |     10 | 1300.00 |
++-------+--------+-----------+--------+---------+
+3 rows in set (0.00 sec)
+
+5.Find Employees Who Do NOT Belong to Any Department
+
+mysql> SELECT empno, ename, job
+    -> FROM emp
+    -> WHERE deptno IS NULL;
+Empty set (0.00 sec)
+
+6.List Departments with Total Salary Greater Than 2000
+
+mysql> SELECT d.deptno, d.dname, SUM(e.sal) AS total_salary
+    -> FROM dept d
+    -> JOIN emp e ON d.deptno = e.deptno
+    -> GROUP BY d.deptno, d.dname
+    -> HAVING SUM(e.sal) > 2000;
++--------+------------+--------------+
+| deptno | dname      | total_salary |
++--------+------------+--------------+
+|     20 | RESEARCH   |     10875.00 |
+|     30 | SALES      |      9400.00 |
+|     10 | ACCOUNTING |      8750.00 |
++--------+------------+--------------+
+3 rows in set (0.01 sec)
+
+7.Show Dept with Highest Total Salary
+
+mysql> SELECT d.deptno, d.dname, SUM(e.sal) AS total_salary
+    -> FROM dept d
+    -> JOIN emp e ON d.deptno = e.deptno
+    -> GROUP BY d.deptno, d.dname
+    -> ORDER BY total_salary DESC
+    -> LIMIT 1;
++--------+----------+--------------+
+| deptno | dname    | total_salary |
++--------+----------+--------------+
+|     20 | RESEARCH |     10875.00 |
++--------+----------+--------------+
+1 row in set (0.00 sec)
+
+8.Display Total Commission Paid Department-wise
+
+mysql> SELECT deptno, SUM(comm) AS total_commission
+    -> FROM emp
+    -> GROUP BY deptno;
++--------+------------------+
+| deptno | total_commission |
++--------+------------------+
+|     10 |             NULL |
+|     20 |             NULL |
+|     30 |          2200.00 |
++--------+------------------+
+3 rows in set (0.00 sec)
+
+9.Show Departments Where Average Salary is Greater Than Overall Average
+
+mysql> SELECT deptno, AVG(sal) AS avg_sal
+    -> FROM emp
+    -> GROUP BY deptno
+    -> HAVING AVG(sal) > (
+    ->     SELECT AVG(sal) FROM emp
+    -> );
++--------+-------------+
+| deptno | avg_sal     |
++--------+-------------+
+|     10 | 2916.666667 |
+|     20 | 2175.000000 |
++--------+-------------+
+2 rows in set (0.00 sec)
+
+10.Departments Where At Least One Employee Earns More Than 4000
+
+mysql> SELECT DISTINCT deptno
+    -> FROM emp
+    -> WHERE sal > 4000;
++--------+
+| deptno |
++--------+
+|     10 |
++--------+
+1 row in set (0.00 sec)
