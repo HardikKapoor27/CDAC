@@ -1,0 +1,170 @@
+select lower, upper, rapad, , rapad, instr, subst, replace
+how do you imlmenmt if contion in MySQL 
+
+
+Q. display emname, job abd cinnusin uf cinnns is null shiw ub stribf comimm foubd null if its zero shiw commiion is 0, else show the commib 
+'
+
+round ceal, floor power sqrt sing dbs mod,
+
+
+two reasons for group. 
+1. when i want to iplent function
+2. when i want to impment function as chart,
+
+where vs havinf. 
+for rows for goups
+
+
+Q. display each job wish m sal on for those dep memenber where 4 or more 
+
+
+how many sub case can be wrttin for obe maib or outer query
+oracale ->256
+sqk server ->35
+mysl-> no define withib stack memeory
+
+
+stack -> infrat with hardisk
+heap -> stack
+
+
+sub queasris should be used when you want use group function with single row
+
+Q. display the emp name, job,, slary , who is having avg salary
+
+Q. display enp name salary of all thoise ehere ataking more sal than highest sal taken by cleark 
+
+Q. display ename, job, of all those who are directly reporting to president
+
+Q. display ename, jobm sal, of all those who are taking sal than higest sal of any preson working in dept no 30
+
+Q, display enmpno, emp name, dept name, jobm sal, and grade of all post who are artaking more salrey than the highest sal reicned by any salesman
+
+
+single row muilte subq
+
+all the sub quer which are exceted till now are scalled as single row subq , bc inner q was reatian only one recort hoever inner q start eruting more than one record than if its called as muitlform sub q
+
+Q. display dep name , empname, sal of those who are recing the highest sal, in the respetuice deptno
+
+Q. display the dept no and avg salary of the that dept which is recing the highest avg salary,
+
+Q. display deptno, dept name, and location of those department wicha re present in dept take but bo emp is present ib emo table 
+
+Q. display ename deptno, dname . loc form emp of all those mep who are line taking more sal than avg sal of therir dept
+
+Q. display emp no, emp name and job of all those whi have atlas one subordinate(JR) working form him (BOSS)
+
+SQL subset commnet
+
+DDL (data def) -> create alre deop truncaite
+
+DCL (data control lang) -> grant revode 
+
+Duplicate tables , temp tables viewm synom index
+
+
+
+5 rules constraint
+1. not null
+2. nique
+3. primary key
+4. foregin key
+5. check ( name, upper case, only, sal is min soo stc)
+compostire primary key -> sombo primar key
+
+
+good praeacite to create tabvle 
+
+create table student(
+stno int constrina SI_KEY primary key,
+
+if you dont give name to constraint the system gernates a name and assign it
+it helps to drop the partuculart key
+
+how do you see constana applied to table
+
+capital letters is given preferabc bc when you sort capital letters come first
+
+create table DPT(.....
+..........
+
+
+
+if you wanna reomce praren record form parent table while child recor wtill exist
+
+while making id --> on dewlete scase danger
+->>. on dlete set null -< good
+
+oracle ->>> meta data --dictonary
+select * from DICt, ( chows data from meta data)
+to see cosmntian appied on a table
+ select constiantname form user_constant whose tablename = 'amp'(yourtbalename)
+
+
+MYSQQL equlent
+
+select
+	table_name as view name
+table_comment as 'destpton ' frpm 
+information_sheme.tannles
+where 
+table_shcleme = 'informati_scheme';
+
+
+MySQL ewulent
+select constainf_name
+cosnttait_type
+from inorma.schemetable.contain
+where
+tablename= 'amp'
+and table_sem = 'cdac'l
+
+
+table with autp incremne feature
+create table procut(
+producit id int auo_incrmenet
+
+
+create table emp1 as select form emp
+this will copy the table abd woks dibe but wont have the constraints
+
+inset into emp2 select * fgrom emp
+
+
+to get cosntrain also
+get to lear everthing aleter column
+two features 
+1.you can ass amuile cilumn ib obe go
+2, cab vrigb coumn aby where not just at kast
+
+
+uysing cgecj constrain -> rules (examples)
+
+
+
+things to learn 
+drop cmd, turniacter , temp table, views, synmie, index
+
+temple table
+
+vreate tempeltable temp(
+eo 
+
+i mean jyust syntzx and example of it
+
+
+
+it enhances the performance when you have really big databse 
+learn about trick drop cmd -> check notes
+
+what is diff delet and  rutnacte 
+two diff ->>
+roll back possible in delete
+-> only value wil go in delete
+
+lofically gone --> delete
+physical gone -- turnaicte
+
+
